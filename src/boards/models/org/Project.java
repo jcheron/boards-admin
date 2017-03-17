@@ -12,33 +12,33 @@ public class Project extends Model {
 	private Date startDate;
 	private Date dueDate;
 	private List<Story> stories;
+	private Developer owner;
 
-	public Project(){
-		this("sans nom","aucun");
+	public Project() {
+		this("sans nom", "aucun");
 	}
-	
-	public Project(String name,String descriptif){
-		this(name,descriptif,Calendar.getInstance().getTime(),null);
+
+	public Project(String name, String descriptif) {
+		this(name, descriptif, Calendar.getInstance().getTime(), null);
 	}
-	
+
 	public Project(String name, String descriptif, Date startDate, Date dueDate) {
-		this(0,name,descriptif,startDate,dueDate);
+		this("", name, descriptif, startDate, dueDate);
 	}
-	
-	public Project(int id,String name, String descriptif, Date startDate, Date dueDate) {
+
+	public Project(String id, String name, String descriptif, Date startDate, Date dueDate) {
 		super(id);
 		this.name = name;
 		this.descriptif = descriptif;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
-		this.stories=new ArrayList<>();
+		this.stories = new ArrayList<>();
 	}
-	
-	public void addStory(){
+
+	public void addStory() {
 		stories.add(new Story());
 	}
-	
-	
+
 	public String getName() {
 		return name;
 	}
@@ -79,14 +79,22 @@ public class Project extends Model {
 		this.stories = stories;
 	}
 
+	public Developer getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Developer owner) {
+		this.owner = owner;
+	}
+
 	@Override
-	public String toString(){
-		String result=name+" ("+descriptif+")";
-		result+= " du "+SimpleDateFormat.getDateInstance().format(startDate);
-		if(dueDate!=null)
-			result+= " au "+SimpleDateFormat.getInstance().format(dueDate);
-		result+=", " + stories.size()+" story(ies)";
+	public String toString() {
+		String result = name + " (" + descriptif + ")";
+		result += " du " + SimpleDateFormat.getDateInstance().format(startDate);
+		if (dueDate != null)
+			result += " au " + SimpleDateFormat.getInstance().format(dueDate);
+		result += ", " + stories.size() + " story(ies)";
 		return result;
 	}
-	
+
 }

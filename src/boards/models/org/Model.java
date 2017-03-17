@@ -1,12 +1,13 @@
 package boards.models.org;
 
-public abstract class Model{
-	protected int id;
-	public Model(){
-		this(0);
+public abstract class Model {
+	protected String _id;
+
+	public Model() {
+		this("");
 	}
-	
-	public Model(int id){
-		this.id=id;
+
+	public Model(String id) {
+		this._id = id;
 	}
 }

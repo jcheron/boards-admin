@@ -6,15 +6,17 @@ import java.util.List;
 public class Developer extends Model {
 	private String identity;
 	private List<Story> stories;
+	private List<Project> projects;
 
 	public Developer() {
-		this(0,"NO NAME");
+		this("", "NO NAME");
 	}
 
-	public Developer(int id,String identity) {
+	public Developer(String id, String identity) {
 		super(id);
 		this.identity = identity;
-		stories=new ArrayList<>();
+		stories = new ArrayList<>();
+		projects = new ArrayList<>();
 	}
 
 	public String getIdentity() {
@@ -33,9 +35,17 @@ public class Developer extends Model {
 		this.stories = stories;
 	}
 
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
 	@Override
 	public String toString() {
 		return identity;
 	}
-	
+
 }

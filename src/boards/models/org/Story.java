@@ -1,22 +1,36 @@
 package boards.models.org;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Story extends Model {
 	private String code;
 	private String descriptif;
 	private Project project;
 	private Developer developer;
 	private Step step;
-	
-	public Story(){
-		this(0, "NO_CODE", "Aucun", null);
+	private List<Tag> tags;
+	private List<Task> tasks;
+
+	public Story() {
+		this("", "NO_CODE", "Aucun", null);
 	}
-	
+
+	public Story(String id, String code, String descriptif, Project project) {
+		super(id);
+		this.code = code;
+		this.descriptif = descriptif;
+		this.project = project;
+		this.tags = new ArrayList<>();
+		this.tasks = new ArrayList<>();
+	}
+
 	public Developer getDeveloper() {
 		return developer;
 	}
 
 	public void setDeveloper(Developer developer) {
-		if(this.developer!=null){
+		if (this.developer != null) {
 			this.developer.getStories().remove(this);
 		}
 		this.developer = developer;
@@ -31,37 +45,52 @@ public class Story extends Model {
 		this.step = step;
 	}
 
-	public Story(int id,String code, String descriptif, Project project) {
-		super(id);
-		this.code = code;
-		this.descriptif = descriptif;
-		this.project = project;
-	}
-	
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public String getDescriptif() {
 		return descriptif;
 	}
+
 	public void setDescriptif(String descriptif) {
 		this.descriptif = descriptif;
 	}
+
 	public Project getProject() {
 		return project;
 	}
+
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
 	@Override
 	public String toString() {
-		String result=code;
-		if(developer!=null)
-			result+="->"+developer;
+		String result = code;
+		if (developer != null)
+			result += "->" + developer;
 		return result;
 	}
+
 }

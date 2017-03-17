@@ -6,10 +6,10 @@ import boards.models.org.Project;
 public class Tests {
 
 	public static void main(String[] args) {
-		Project monProjet=new Project();
-		
-		Developer edouard=new Developer(0, "Edouard");
-		Developer vincent=new Developer(1, "Vincent");
+		Project monProjet = new Project();
+
+		Developer edouard = new Developer("0", "Edouard");
+		Developer vincent = new Developer("1", "Vincent");
 		monProjet.addStory();
 		System.out.println(monProjet);
 		System.out.println(monProjet.getStories());
@@ -22,9 +22,9 @@ public class Tests {
 		showDevStories(edouard);
 
 	}
-	
-	private static void showDevStories(Developer dev){
-		System.out.println("Stories de "+dev);
+
+	private static void showDevStories(Developer dev) {
+		System.out.println("Stories de " + dev);
 		System.out.println(dev.getStories());
 	}
 }
