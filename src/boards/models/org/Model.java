@@ -15,4 +15,19 @@ public abstract class Model {
 	public Model(ObjectId id) {
 		this._id = id;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj==null)
+			return false;
+		if(obj instanceof Model){
+			if(_id!=null)
+				return _id.equals(((Model)obj).get_id());
+		}
+		return super.equals(obj);
+	}
+
+	public ObjectId get_id() {
+		return _id;
+	}
 }
