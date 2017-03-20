@@ -1,13 +1,18 @@
 package boards.models.org;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public abstract class Model {
-	protected String _id;
+	@Expose
+	protected ObjectId _id;
 
 	public Model() {
-		this("");
+		this(null);
 	}
 
-	public Model(String id) {
+	public Model(ObjectId id) {
 		this._id = id;
 	}
 }

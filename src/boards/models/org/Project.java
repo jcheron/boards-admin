@@ -6,12 +6,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public class Project extends Model {
+	@Expose
 	private String name;
+	@Expose
 	private String descriptif;
+	@Expose
 	private Date startDate;
+	@Expose
 	private Date dueDate;
 	private List<Story> stories;
+	@Expose
 	private Developer owner;
 
 	public Project() {
@@ -23,10 +32,10 @@ public class Project extends Model {
 	}
 
 	public Project(String name, String descriptif, Date startDate, Date dueDate) {
-		this("", name, descriptif, startDate, dueDate);
+		this(null, name, descriptif, startDate, dueDate);
 	}
 
-	public Project(String id, String name, String descriptif, Date startDate, Date dueDate) {
+	public Project(ObjectId id, String name, String descriptif, Date startDate, Date dueDate) {
 		super(id);
 		this.name = name;
 		this.descriptif = descriptif;
@@ -85,6 +94,8 @@ public class Project extends Model {
 
 	public void setOwner(Developer owner) {
 		this.owner = owner;
+		if (owner != null)
+			owner.getProjects().add(this);
 	}
 
 	@Override

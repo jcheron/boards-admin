@@ -3,16 +3,21 @@ package boards.models.org;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public class Developer extends Model {
+	@Expose
 	private String identity;
 	private List<Story> stories;
 	private List<Project> projects;
 
 	public Developer() {
-		this("", "NO NAME");
+		this(null, "NO NAME");
 	}
 
-	public Developer(String id, String identity) {
+	public Developer(ObjectId id, String identity) {
 		super(id);
 		this.identity = identity;
 		stories = new ArrayList<>();
@@ -45,7 +50,7 @@ public class Developer extends Model {
 
 	@Override
 	public String toString() {
-		return identity;
+		return identity + " (" + projects.size() + " projects)";
 	}
 
 }

@@ -8,8 +8,8 @@ public class Tests {
 	public static void main(String[] args) {
 		Project monProjet = new Project();
 
-		Developer edouard = new Developer("0", "Edouard");
-		Developer vincent = new Developer("1", "Vincent");
+		Developer edouard = new Developer(null, "Edouard");
+		Developer vincent = new Developer(null, "Vincent");
 		monProjet.addStory();
 		System.out.println(monProjet);
 		System.out.println(monProjet.getStories());

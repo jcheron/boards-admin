@@ -1,7 +1,16 @@
 package boards.models.org;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public class Step extends Model {
+	@Expose
 	private String title;
+
+	public Step() {
+		this(null, "NO TITLE");
+	}
 
 	public String getTitle() {
 		return title;
@@ -11,8 +20,8 @@ public class Step extends Model {
 		this.title = title;
 	}
 
-	public Step(int id, String title) {
-		super();
+	public Step(ObjectId id, String title) {
+		super(id);
 		this.title = title;
 	}
 

@@ -1,14 +1,22 @@
 package boards.models.org;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public class Task extends Model {
+	@Expose
 	private String content;
+	@Expose
 	private Story story;
+	@Expose
+	private boolean closed;
 
 	public Task() {
-		this("", "NO CONTENT");
+		this(null, "NO CONTENT");
 	}
 
-	public Task(String id, String content) {
+	public Task(ObjectId id, String content) {
 		super(id);
 		this.content = content;
 	}
@@ -32,6 +40,11 @@ public class Task extends Model {
 	@Override
 	public String toString() {
 		return content;
+	}
+
+	public void close() {
+		this.closed = true;
+
 	}
 
 }

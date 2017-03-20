@@ -9,6 +9,8 @@ import com.mongodb.DBObject;
 import boards.db.org.DBOAdapter;
 import boards.db.org.MyMongo;
 import boards.models.org.Developer;
+import boards.models.org.Project;
+import boards.models.org.Story;
 
 public class MongoTest {
 
@@ -19,9 +21,9 @@ public class MongoTest {
 			System.out.println(myMongo.getDbNames());
 			System.out.println(myMongo.getCollection("Developper"));
 			myMongo.setCollection("Developper");
-			Developer dev = new Developer("15", "Edouard");
-			// dev.getStories().add(new Story(5,"CCC","Aucun",new Project()));
-			// System.out.println(myMongo.insert(dev));
+			Developer dev = new Developer(null, "Edouard");
+			dev.getStories().add(new Story(null, "CCC", "Aucun", new Project()));
+			System.out.println(myMongo.insert(dev));
 			DBObject dboDev = myMongo.findOne(new BasicDBObject("identity", "Edouard"));
 			Developer newdev = DBOAdapter.dboToModel(dboDev, Developer.class);
 			Cursor cursor = myMongo.find();

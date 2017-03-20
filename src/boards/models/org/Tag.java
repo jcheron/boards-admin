@@ -1,15 +1,23 @@
 package boards.models.org;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public class Tag extends Model {
+	@Expose
 	private String title;
+	@Expose
+	private String color;
 
 	public Tag() {
-		this("", "NO TITLE");
+		this(null, "NO TITLE", "");
 	}
 
-	public Tag(String id, String title) {
+	public Tag(ObjectId id, String title, String color) {
 		super(id);
 		this.title = title;
+		this.color = color;
 	}
 
 	public String getTitle() {
@@ -18,6 +26,14 @@ public class Tag extends Model {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	@Override

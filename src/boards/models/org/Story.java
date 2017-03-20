@@ -3,24 +3,39 @@ package boards.models.org;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.types.ObjectId;
+
+import com.google.gson.annotations.Expose;
+
 public class Story extends Model {
+	@Expose
 	private String code;
+	@Expose
 	private String descriptif;
+	@Expose
 	private Project project;
+	@Expose
 	private Developer developer;
+	@Expose
 	private Step step;
+	@Expose
 	private List<Tag> tags;
+	@Expose
 	private List<Task> tasks;
 
 	public Story() {
-		this("", "NO_CODE", "Aucun", null);
+		this(null, "NO_CODE", "Aucun", null);
 	}
 
-	public Story(String id, String code, String descriptif, Project project) {
+	public Story(ObjectId id, String code, String descriptif) {
+		this(id, code, descriptif, null);
+	}
+
+	public Story(ObjectId id, String code, String descriptif, Project project) {
 		super(id);
 		this.code = code;
 		this.descriptif = descriptif;
-		this.project = project;
+		setProject(project);
 		this.tags = new ArrayList<>();
 		this.tasks = new ArrayList<>();
 	}
@@ -67,6 +82,8 @@ public class Story extends Model {
 
 	public void setProject(Project project) {
 		this.project = project;
+		if (project != null)
+			project.getStories().add(this);
 	}
 
 	public List<Tag> getTags() {
